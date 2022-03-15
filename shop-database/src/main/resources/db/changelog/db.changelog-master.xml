@@ -13,7 +13,7 @@
         <tagDatabase tag="db_init"/>
     </changeSet>
 
-    <include file="v-1.0/root.changelog.xml" relativeToChangelogFile="true"/>
+    <include file="v-2.0/root.changelog.xml" relativeToChangelogFile="true"/>
 
     <changeSet id="100" author="nikolajisakov">
         <tagDatabase tag="v-1.0"/>
@@ -29,6 +29,12 @@
 
     <changeSet id="300" author="nikolajisakov">
         <tagDatabase tag="v-1.2"/>
+    </changeSet>
+
+    <include file="v-2.0/root.changelog.xml" relativeToChangelogFile="true"/>
+
+    <changeSet id="400" author="nikolajisakov">
+        <tagDatabase tag="v-2.0"/>
     </changeSet>
 
 </databaseChangeLog>
