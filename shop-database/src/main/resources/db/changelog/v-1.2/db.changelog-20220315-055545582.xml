@@ -1,0 +1,144 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-1">
+        <createTable tableName="blog">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blogPK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-2">
+        <createTable tableName="cart">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="cartPK"/>
+            </column>
+            <column name="countItem" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-3">
+        <createTable tableName="category">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="categoryPK"/>
+            </column>
+            <column name="title" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-4">
+        <createTable tableName="category_discount">
+            <column name="discount_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-5">
+        <createTable tableName="discount">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="discountPK"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-6">
+        <createTable tableName="order">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="orderPK"/>
+            </column>
+            <column name="username" type="VARCHAR(255)"/>
+            <column name="orderItems_id" type="BIGINT"/>
+            <column name="user_table_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-7">
+        <createTable tableName="orderitems">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="orderitemsPK"/>
+            </column>
+            <column name="count" type="INT"/>
+            <column name="product" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-8">
+        <createTable tableName="product">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="productPK"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="price" type="INT"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime(6)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-9">
+        <createTable tableName="product_category">
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-10">
+        <createTable tableName="product_discount">
+            <column name="discount_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-11">
+        <createTable tableName="product_orderItems">
+            <column name="orderItems_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-12">
+        <createTable tableName="score">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="scorePK"/>
+            </column>
+            <column name="value" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-13">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_category" constraintName="FK2k3smhbruedlcrvu6clued06x" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-14">
+        <addForeignKeyConstraint baseColumnNames="discount_id" baseTableName="category_discount" constraintName="FK6xy3f4vl3gr2lfjbkfi123gdw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="discount" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-15">
+        <addForeignKeyConstraint baseColumnNames="user_table_id" baseTableName="order" constraintName="FK7xexjrvmsexoev9vgav51ktte" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-16">
+        <addForeignKeyConstraint baseColumnNames="discount_id" baseTableName="product_discount" constraintName="FK8q5g6698ts6uqig91bmm3ukb7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="discount" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-17">
+        <addForeignKeyConstraint baseColumnNames="orderItems_id" baseTableName="order" constraintName="FK9txqpg7lu8hpqsk63xceg0k6a" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="orderitems" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-18">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_orderItems" constraintName="FKbcd10aaegbkac9ghwo253fnbh" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-19">
+        <addForeignKeyConstraint baseColumnNames="orderItems_id" baseTableName="product_orderItems" constraintName="FKk3i4lit344pf2ppaexoh5oi51" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="orderitems" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-20">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="product_category" constraintName="FKkud35ls1d40wpjb5htpp14q4e" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="category" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-21">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="category_discount" constraintName="FKnyyk86d4c9gg3lik5d2ik082h" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="category" validate="true"/>
+    </changeSet>
+    <changeSet author="nikolajisakov (generated)" id="1647323755888-22">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_discount" constraintName="FKr5ttw8wovl5nkcc9ysfc16fkk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
