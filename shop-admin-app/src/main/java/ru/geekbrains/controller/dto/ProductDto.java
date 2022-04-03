@@ -15,7 +15,7 @@ public class ProductDto {
 
     private String description;
 
-    private BigDecimal price;
+    private Integer price;
 
     private CategoryDto category;
 
@@ -26,7 +26,7 @@ public class ProductDto {
     public ProductDto() {
     }
 
-    public ProductDto(Long id, String title, String description, BigDecimal price,
+    public ProductDto(Long id, String title, String description, Integer price,
                       CategoryDto category, List<Long> pictures) {
         this.id = id;
         this.title = title;

@@ -15,18 +15,16 @@ public class ProductDto {
 
     private String description;
 
-    private BigDecimal price;
+    private int price;
 
     private CategoryDto category;
-
-    private MultipartFile[] newPicture;
 
     private List<Long> pictures;
 
     public ProductDto() {
     }
 
-    public ProductDto(Long id, String title, String description, BigDecimal price,
+    public ProductDto(Long id, String title, String description, int price,
                       CategoryDto category, List<Long> pictures) {
         this.id = id;
         this.title = title;

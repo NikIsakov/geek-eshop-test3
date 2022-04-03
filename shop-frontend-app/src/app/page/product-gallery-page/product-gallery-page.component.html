@@ -5,8 +5,11 @@
     </div>
 
     <div class="col-md-9 col-xs-12">
-      <app-gallery></app-gallery>
-      <app-pagination></app-pagination>
+      <app-pagination [page]="page" (goToPageEvent)="goToPage($event)"></app-pagination>
+
+      <app-gallery [products]="products"></app-gallery>
+
+      <app-pagination [page]="page"></app-pagination>
     </div>
 
 </div>

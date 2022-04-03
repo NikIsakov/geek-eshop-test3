@@ -17,8 +17,8 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
 
     Page<Product> findAll(@Nullable Specification<Product> spec, Pageable pageable);
-
-    List<Product> findProductByNameLike(String name);
-
-    List<Product> findByPriceBetween(BigDecimal min, BigDecimal max);
+//
+//    List<Product> findProductByNameLike(String name);
+//
+//    List<Product> findByPriceBetween(BigDecimal min, BigDecimal max);
 }
