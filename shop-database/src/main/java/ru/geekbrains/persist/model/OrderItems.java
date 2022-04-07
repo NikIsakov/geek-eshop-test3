@@ -14,19 +14,19 @@ public class OrderItems {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "product")
+    @Column
     private String product;
 
-    @Column(name = "count")
+    @Column
     private int count;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_orderItems",
-            joinColumns = @JoinColumn(name = "orderItems_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "product_orderItems",
+//            joinColumns = @JoinColumn(name = "orderItems_id"),
+//            inverseJoinColumns = @JoinColumn(name = "product_id")
+//    )
+//    private List<Product> products;
 
 //    @OneToOne(mappedBy = "order")
 //    Order order;

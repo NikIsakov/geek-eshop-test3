@@ -14,8 +14,8 @@ public class Category {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "name")
+    private String name;
 
     @ManyToMany
     @JoinTable(
@@ -32,4 +32,12 @@ public class Category {
             inverseJoinColumns = @JoinColumn(name = "discount_id")
     )
     private List<Discount> discounts;
+
+    public Category(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Category() {
+    }
 }
