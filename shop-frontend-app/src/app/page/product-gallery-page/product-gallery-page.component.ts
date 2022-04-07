@@ -13,6 +13,7 @@ export class ProductGalleryPageComponent implements OnInit {
   products: Product[] = [];
 
   page?:Page;
+  nameFilter?:string;
 
   constructor(private productServiceService: ProductServiceService) { }
 
@@ -27,12 +28,23 @@ export class ProductGalleryPageComponent implements OnInit {
   }
 
   goToPage(page: number) {
-    this.productServiceService.findAll(page).subscribe( res =>{
+    this.productServiceService.findAll(this.nameFilter ,page).subscribe( res =>{
       console.log("Loading products");
       this.page = res;
       this.products = res.content;
     }, err =>{
       console.log('Error loading products ${err}');
     });
+  }
+
+  filterApplied($event: string) {
+    this.productServiceService.findAll($event, 1).subscribe(res=>{
+      this.nameFilter=$event;
+      this.page=res;
+      this.products=res.content;
+    },
+      err => {
+        console.log('Error loading products ${err}');
+      } );
   }
 }
