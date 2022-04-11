@@ -3,11 +3,12 @@ package ru.geekbrains.controller.Dto;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Data
-public class ProductDto {
+public class ProductDto implements Serializable {
 
     private Long id;
 
@@ -15,7 +16,7 @@ public class ProductDto {
 
     private String description;
 
-    private int price;
+    private Integer price;
 
     private CategoryDto category;
 
@@ -24,7 +25,7 @@ public class ProductDto {
     public ProductDto() {
     }
 
-    public ProductDto(Long id, String title, String description, int price,
+    public ProductDto(Long id, String title, String description, Integer price,
                       CategoryDto category, List<Long> pictures) {
         this.id = id;
         this.title = title;

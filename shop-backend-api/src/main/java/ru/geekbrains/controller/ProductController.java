@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.geekbrains.controller.Dto.ProductDto;
 import ru.geekbrains.service.ProductService;
 
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @RequestMapping("/v1/product")
@@ -28,7 +29,7 @@ public class ProductController {
                                     @RequestParam("namePattern")Optional<String> namePattern,
                                     @RequestParam("page")Optional<Integer> page,
                                     @RequestParam("size")Optional<Integer> size,
-                                    @RequestParam("sortField")Optional<String> sortField){
+                                    @RequestParam("sortField")Optional<String> sortField ){
         return productService.findAll(
                 categoryId,
                 namePattern,
