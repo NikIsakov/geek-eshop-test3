@@ -39,7 +39,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void removeProductQty(ProductDto productDto, String color, String material, int qty) {
-        // TODO
+        //lineItems.remove(lineItems);
     }
 
     @Override
