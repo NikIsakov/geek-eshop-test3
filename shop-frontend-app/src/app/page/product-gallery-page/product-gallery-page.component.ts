@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductServiceService} from "../../service/product-service.service";
 import {Product} from "../../model/product";
 import {Page} from "../../model/page";
+import {OrderStatusService} from "../../service/order-status.service";
 
 @Component({
   selector: 'app-product-gallery-page',

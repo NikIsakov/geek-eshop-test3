@@ -9,6 +9,7 @@ import {NavigationEnd, Router} from "@angular/router";
 export class NavBarComponent implements OnInit {
   isCartPage: boolean = false;
   isProductGalleryPage: boolean = false;
+  isOrderPage: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -17,6 +18,7 @@ export class NavBarComponent implements OnInit {
       if (event instanceof NavigationEnd){
         this.isProductGalleryPage = event.url === '/' || event.url === '/product';
         this.isCartPage = event.url === '/cart';
+        this.isOrderPage = event.url === '/order';
       }
     })
   }

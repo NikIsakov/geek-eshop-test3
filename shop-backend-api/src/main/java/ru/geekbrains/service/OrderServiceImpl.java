@@ -3,8 +3,10 @@ package ru.geekbrains.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.controller.Dto.OrderDto;
+import ru.geekbrains.controller.Dto.OrderLineItemDto;
 import ru.geekbrains.persist.OrderRepository;
 import ru.geekbrains.persist.Repository.ProductRepository;
 import ru.geekbrains.persist.Repository.UserRepository;
@@ -32,15 +34,18 @@ public class OrderServiceImpl implements OrderService {
 
     private final ProductRepository productRepository;
 
+    private final SimpMessagingTemplate template;
+
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository,
                             CartService cartService,
                             UserRepository userRepository,
-                            ProductRepository productRepository) {
+                            ProductRepository productRepository, SimpMessagingTemplate template) {
         this.orderRepository = orderRepository;
         this.cartService = cartService;
         this.userRepository = userRepository;
         this.productRepository = productRepository;
+        this.template = template;
     }
 
     public List<OrderDto> findOrdersByUsername(String username) {
@@ -55,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
                                         li.getId(),
                                         li.getOrder().getId(),
                                         li.getProduct().getId(),
-                                        li.getProduct().getName(),
+                                        li.getProduct().getTitle(),
                                         li.getPrice(),
                                         li.getQty(),
                                         li.getColor(),
@@ -105,7 +110,7 @@ public class OrderServiceImpl implements OrderService {
                     e.printStackTrace();
                 }
                 logger.info("Sending next status {} for order {}", status, order.getId());
-                template.convertAndSend("/order_out/order", new OrderStatus(order.getId(), status.toString()));
+                template.convertAndSend("/order_out/order",  new OrderStatus(order.getId(), status.toString()));
             }
         }).start();
     }

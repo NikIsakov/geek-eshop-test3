@@ -10,8 +10,11 @@ import { FooterComponent } from './component/footer/footer.component';
 import { ProductFilterComponent } from './component/product-filter/product-filter.component';
 import { GalleryComponent } from './component/gallery/gallery.component';
 import { PaginationComponent } from './component/pagination/pagination.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {LoginPageComponent} from "./page/login-page/login-page.component";
+import { OrderPageComponent } from './page/order-page/order-page.component';
+import {UnauthorizedInterceptor} from "./helper/unauthorized-interceptor";
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import {FormsModule} from "@angular/forms";
     FooterComponent,
     ProductFilterComponent,
     GalleryComponent,
-    PaginationComponent
+    PaginationComponent,
+    LoginPageComponent,
+    OrderPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,9 @@ import {FormsModule} from "@angular/forms";
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

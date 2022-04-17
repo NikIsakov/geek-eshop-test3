@@ -1,0 +1,7 @@
+ng new shop-frontend-app
+ng serve
+
+npm i bootstrap
+
+ng g component page/product-gallery-page
+ng g component page/product-info-page
