@@ -30,8 +30,8 @@ public class LineItem implements Serializable {
     public LineItem() {
     }
 
-    public Integer getItemTotal() {
-        return productDto.getPrice();
+    public BigDecimal getItemTotal() {
+        return productDto.getOrder.javaPrice();
     }
 
     @Override
