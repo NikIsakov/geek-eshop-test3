@@ -31,7 +31,7 @@ public class LineItem implements Serializable {
     }
 
     public BigDecimal getItemTotal() {
-        return productDto.getOrder.javaPrice();
+        return productDto.getPrice().multiply(new BigDecimal(qty));
     }
 
     @Override
