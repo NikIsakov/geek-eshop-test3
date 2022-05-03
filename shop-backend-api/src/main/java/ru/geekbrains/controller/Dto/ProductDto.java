@@ -39,5 +39,4 @@ public class ProductDto implements Serializable {
         this.category = category;
         this.pictures = pictures;
     }
-
 }

@@ -3,6 +3,7 @@ package ru.geekbrains.persist.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Product {
     private String description;
 
     @Column
-    private Integer price;
+    private BigDecimal price;
 
     @Column
     private LocalDateTime createdAt;
@@ -39,7 +40,7 @@ public class Product {
             cascade = CascadeType.ALL)
     private List<Picture> pictures = new ArrayList<>();
 
-    public Product(Long id, String title, String description, Integer price, Category category) {
+    public Product(Long id, String title, String description, BigDecimal price, Category category) {
         this.id = id;
         this.title = title;
         this.description = description;

@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
                 .map(product -> new ProductDto(product.getId(),
                         product.getTitle(),
                         product.getDescription(),
-                        product.,
+                        product.getPrice(),
                         new CategoryDto(product.getCategory().getId(), product.getCategory().getName()),
                         product.getPictures().stream().map(Picture::getId).collect(Collectors.toList())));
     }
