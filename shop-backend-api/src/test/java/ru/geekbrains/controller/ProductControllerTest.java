@@ -1,5 +1,7 @@
 package ru.geekbrains.controller;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
@@ -27,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 @TestPropertySource(locations = "classpath:application-test.properties")
 @AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD) 
 @SpringBootTest
 public class ProductControllerTest {
 
@@ -44,6 +48,18 @@ public class ProductControllerTest {
 
     @MockBean
     private SimpMessagingTemplate template;
+
+    @BeforeEach
+    public void before() {
+        productRepository.deleteAll();
+        categoryRepository.deleteAll();
+    }
+
+    @AfterEach
+    public void after() {
+        productRepository.deleteAll();
+        categoryRepository.deleteAll();
+    }
 
     @Test
     public void testProductDetails() throws Exception {
